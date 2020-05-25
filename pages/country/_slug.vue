@@ -1,7 +1,7 @@
 <template>
   <div class="wrap container">
     <nuxt-link to="/" class="btn-back">
-      <span></span> back
+      <IosArrowRoundBackIcon w="3em" h="3em" />back
     </nuxt-link>
     <div class="card">
       <div class="card__logo">
@@ -66,7 +66,12 @@
 
 <script>
 import axios from "@nuxtjs/axios";
+import IosArrowRoundBackIcon from "vue-ionicons/dist/ios-arrow-round-back.vue";
+
 export default {
+  components: {
+    IosArrowRoundBackIcon
+  },
   head: {
     title: `Country details`,
     meta: [
@@ -108,10 +113,22 @@ export default {
 
 <style lang="scss">
 .btn-back {
-  display: inline-block;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
   box-shadow: 3px 3px 12px 5px hsla(0, 0%, 52%, 0.15);
   margin: 2rem 0 2.5rem;
   padding: 0.5rem 1.25rem;
+  &hover {
+    box-shadow: 3px 3px 15px 8px hsla(0, 0%, 52%, 0.21);
+  }
+  div {
+    margin-right: 0.5rem;
+    transition: all 0.15s ease;
+  }
+  &hover div {
+    transform: translateX(-4px);
+  }
 }
 .card {
   h2 {

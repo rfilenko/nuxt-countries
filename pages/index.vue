@@ -2,22 +2,25 @@
   <div class="container">
     <div class="intro">
       <form @submit.prevent>
-        <input
-          v-model="search"
-          type="text"
-          v-on:keyup="filterByName($event)"
-          placeholder="Search for a country..."
-        />
+        <div class="input-group">
+          <IosSearchIcon v-show="search.length === 0" />
+          <input
+            v-model="search"
+            type="text"
+            v-on:keyup="filterByName($event)"
+            placeholder="Search for a country..."
+          />
+        </div>
       </form>
       <select v-on:change="onChange($event)" :selected="selectedReg">
-        <option value="none">
-          Filter by Region
-          <span>icon</span>
-        </option>
+        <option value="none">Filter by Region</option>
         <option v-for="region in regions" :key="region" :value="region">{{region}}</option>
       </select>
     </div>
-    <div v-if="loading">Loading data...</div>
+    <div v-if="loading" class="loading">
+      Loading
+      <IosRefreshCircleIcon w="2em" h="2em" animate="rotate" />
+    </div>
     <div v-else class="countries-list">
       <Tile v-for="country in filtered" :country="country" :key="country.name" />
     </div>
@@ -26,6 +29,8 @@
 
 <script>
 import Tile from "~/components/Tile.vue";
+import IosSearchIcon from "vue-ionicons/dist/ios-search.vue";
+import IosRefreshCircleIcon from "vue-ionicons/dist/ios-refresh-circle.vue";
 
 export default {
   head: {
@@ -39,7 +44,9 @@ export default {
     ]
   },
   components: {
-    Tile
+    Tile,
+    IosSearchIcon,
+    IosRefreshCircleIcon
   },
   data() {
     return {
@@ -74,8 +81,8 @@ export default {
       this.regions = regionsList;
     },
     onChange(e) {
+      this.search = e.target.value;
       if (this.selectedReg !== e.target.value) {
-        console.log("new");
         const filteredList = this.countries.filter(
           item => item.region === e.target.value
         );
@@ -106,17 +113,59 @@ main .container {
   form {
     input {
       width: 100%;
-      padding: 1rem;
       margin-bottom: 2rem;
-      border-radius: 4px;
-      box-shadow: 1px 1px 10px hsla(200, 15%, 8%, 0.1);
+      padding-left: 3rem;
     }
+  }
+  .input-group {
+    position: relative;
+    div {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.15s ease;
+      svg {
+        fill: var(--primary-clr);
+      }
+    }
+    /* input:focus + div {
+      opacity: 0;
+    } */
+  }
+
+  input,
+  select {
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px hsla(200, 15%, 8%, 0.1);
   }
   select {
     width: 50%;
     padding: 1rem;
+    cursor: pointer;
   }
 }
+
+/* loading  */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .ion {
+    margin-left: 0.25rem;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ionRotate;
+    animation-duration: 2s;
+  }
+}
+@keyframes ionRotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+/* countries-list */
 .countries-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
