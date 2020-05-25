@@ -113,12 +113,12 @@ main .container {
   form {
     input {
       width: 100%;
-      margin-bottom: 2rem;
       padding-left: 3rem;
     }
   }
   .input-group {
     position: relative;
+    margin-bottom: 2rem;
     div {
       position: absolute;
       left: 1rem;
@@ -129,11 +129,7 @@ main .container {
         fill: var(--primary-clr);
       }
     }
-    /* input:focus + div {
-      opacity: 0;
-    } */
   }
-
   input,
   select {
     padding: 1rem;
@@ -144,6 +140,13 @@ main .container {
     width: 50%;
     padding: 1rem;
     cursor: pointer;
+  }
+}
+.dark-mode {
+  input,
+  select {
+    background: var(--darkMode-elements-clr);
+    color: var(--darkMode-text-clr);
   }
 }
 
@@ -183,9 +186,9 @@ main .container {
     align-items: center;
     form {
       width: 40%;
-      input {
-        margin-bottom: 0;
-      }
+    }
+    .input-group {
+      margin-bottom: 0;
     }
     select {
       width: 40%;

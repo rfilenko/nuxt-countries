@@ -48,6 +48,11 @@ export default {
     box-shadow: 1px 1px 15px 10px hsla(0, 0%, 52%, 0.15);
   }
 }
+.dark-mode {
+  .tile {
+    background: var(--darkMode-elements-clr);
+  }
+}
 .tile__body {
   display: grid;
   grid-template-columns: 1fr;

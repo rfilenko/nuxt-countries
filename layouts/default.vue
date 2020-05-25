@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" :class="!this.$store.state.mode.lightMode ? 'dark-mode': ''">
     <AppHeader />
     <main>
       <nuxt />
@@ -16,6 +16,19 @@ export default {
   components: {
     AppHeader,
     AppFooter
+  },
+  data() {
+    return {
+      light: null
+    };
+  },
+  created() {
+    this.light = this.$store.state.mode.lightMode;
+  },
+  methods: {
+    switchMode() {
+      this.$store.commit("mode/toggle");
+    }
   }
 };
 </script>

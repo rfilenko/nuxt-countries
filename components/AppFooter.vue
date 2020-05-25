@@ -31,6 +31,12 @@ footer {
     }
   }
 }
+.dark-mode {
+  footer {
+    background: var(--darkMode-elements-clr);
+    color: var(--darkMode-text-clr);
+  }
+}
 
 .attribution {
   display: flex;

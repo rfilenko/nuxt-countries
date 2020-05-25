@@ -2,13 +2,9 @@
   <header>
     <div class="container">
       <h1 class="title">Where is the world?</h1>
-
-      <button v-if="lightMode" @click="switchMode">
-        <IosSunnyIcon />light mode
-      </button>
-      <button v-else @click="switchMode">
-        <IosMoonIcon />dark mode
-      </button>
+      <!--  <IosMoonIcon /><IosSunnyIcon />
+      -->
+      <button @click="switchMode">{{ light ? `dark mode` : `light mode` }}</button>
     </div>
   </header>
 </template>
@@ -25,12 +21,16 @@ export default {
   },
   data() {
     return {
-      lightMode: true
+      light: null
     };
+  },
+  created() {
+    this.light = this.$store.state.mode.lightMode;
   },
   methods: {
     switchMode() {
-      this.lightMode = !this.lightMode;
+      this.light = !this.light;
+      this.$store.commit("mode/toggle");
     }
   }
 };
@@ -56,6 +56,11 @@ header {
     div {
       margin-left: 0.5rem;
     }
+  }
+}
+.dark-mode {
+  header {
+    background: var(--darkMode-elements-clr);
   }
 }
 </style>
