@@ -1,0 +1,71 @@
+// @import "assets/scss/variables";
+// - Dark Blue (Dark Mode Elements): hsl(209, 23%, 22%)
+// - Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
+// - Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
+// - Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
+// - Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
+// - White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%)
+
+:root {
+  --darkMode-white-clr: hsl(207, 26%, 17%);
+  --darkMode-text-clr: hsl(0, 0%, 100%);
+  --darkMode-elements-clr: hsl(209, 23%, 22%);
+
+  --lightMode-bg-clr: hsl(0, 0%, 98%);
+  --lightMode-input-clr: hsl(0, 0%, 52%);
+  --lightMode-elements-clr: var(--darkMode-text-clr);
+  --lightMode-text-clr: hsl(200, 15%, 8%);
+  --very-lightGrey-clr: hsl(0, 0%, 5%);
+
+  --primary-clr: var(--lightMode-input-clr);
+  --secondary-clr: var(--darkMode-elements-clr);
+}
+html {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background: var(--lightMode-bg-clr);
+  font-size: 14px;
+  color: var(--lightMode-text-clr);
+}
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.title {
+  font-weight: 500;
+  font-size: 45px;
+  color: var(--darkGrey-clr);
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: 32px;
+    line-height: 1;
+  }
+}
+@media screen and (max-width: 600px) {
+
+}
