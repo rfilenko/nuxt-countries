@@ -1,6 +1,8 @@
-# nuxt-jobs
+# countries-api
 
-> Job listings app, created with Vue and Nuxt.js
+> A list of countries with basic information, rest api to fetch data, created with Vue and Nuxt.js, toggle light/dark mode, styled with scss.
+
+### Frontend Mentor - REST Countries API with color theme switcher
 
 ## Build Setup
 

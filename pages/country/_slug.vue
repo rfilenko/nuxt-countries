@@ -5,7 +5,10 @@
     </nuxt-link>
     <div class="card">
       <div class="card__logo">
-        <img :src="current.flag" :alt="`${current.name} flag`" />
+        <figure>
+          <img v-if="!loading" :src="current.flag" :alt="`${current.name} flag`" />
+          <figcaption aria-hidden="true">{{`SVG icon of ${current.name} flag`}}</figcaption>
+        </figure>
       </div>
       <div class="card__body">
         <h2>{{current.name}}</h2>
@@ -16,7 +19,7 @@
           </p>
           <p>
             Population:
-            <span>{{current.population}}</span>
+            <span>{{current.population.toLocaleString()}}</span>
           </p>
           <p>
             Region:
@@ -85,18 +88,20 @@ export default {
   data() {
     return {
       slug: null,
-      current: ""
+      current: "",
+      loading: false
     };
   },
   async created() {
     const curr = this.$route.params.slug;
     this.slug = curr.toLowerCase();
-
+    this.loading = true;
     if (this.slug !== undefined) {
       const res = await this.$axios.$get(
         `https://restcountries.eu/rest/v2/alpha/${this.slug}`
       );
       this.current = res;
+      this.loading = false;
     }
   },
   mounted() {
@@ -126,7 +131,7 @@ export default {
     margin-right: 0.5rem;
     transition: all 0.15s ease;
   }
-  &hover div {
+  &:hover div {
     transform: translateX(-4px);
   }
 }
@@ -134,13 +139,16 @@ export default {
   h2 {
     font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   img {
     height: 250px;
     margin-bottom: 1rem;
     width: 100%;
   }
+}
+.card__logo {
+  margin-bottom: 2rem;
 }
 .card__info {
   margin-bottom: 2rem;
@@ -164,6 +172,7 @@ export default {
   span {
     color: var(--primary-clr);
     font-weight: 300;
+    margin: 0 0.25rem;
   }
   b {
     font-weight: 600;
@@ -188,6 +197,18 @@ ul,
     border: 1px solid var(--primary-clr);
     padding: 0.25rem 0.75rem;
     margin: 0.25rem;
+  }
+}
+
+.dark-mode {
+  .card__info,
+  .card__additional {
+    span {
+      color: var(--darkMode-text-clr);
+    }
+  }
+  svg.ion__svg {
+    fill: var(--darkMode-text-clr);
   }
 }
 @media screen and(min-width: 800px) {

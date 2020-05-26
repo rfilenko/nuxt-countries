@@ -2,13 +2,16 @@
   <nuxt-link :to="`/country/${country.alpha3Code.toLowerCase()}`" class="tile">
     <div class="tile__body">
       <div class="tile__logo">
-        <img :src="country.flag" :alt="`${country.name} flag`" />
+        <figure>
+          <img :src="country.flag" :alt="`${country.name} flag`" />
+          <figcaption aria-hidden="true">{{`SVG icon of ${country.name} flag`}}</figcaption>
+        </figure>
       </div>
       <div class="tile__content">
         <h3>{{country.name}}</h3>
         <p>
           Population:
-          <span>{{country.population}}</span>
+          <span>{{country.population.toLocaleString()}}</span>
         </p>
         <p>
           Region:

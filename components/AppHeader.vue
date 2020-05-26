@@ -2,8 +2,6 @@
   <header>
     <div class="container">
       <h1 class="title">Where is the world?</h1>
-      <!--  <IosMoonIcon /><IosSunnyIcon />
-      -->
       <button @click="switchMode">{{ light ? `dark mode` : `light mode` }}</button>
     </div>
   </header>
@@ -35,6 +33,7 @@ export default {
   }
 };
 </script>
+
 <style lang="scss">
 header {
   > div {

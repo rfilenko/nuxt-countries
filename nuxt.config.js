@@ -19,12 +19,12 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: 'hsl(180, 29%, 50%)' },
+  loading: { color: 'hsl(207, 26%, 17%)' },
   /*
   ** Global CSS
   */
   css: [
-    '~/css/main.scss'
+    '~/assets/scss/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App

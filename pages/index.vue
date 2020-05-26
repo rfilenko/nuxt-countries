@@ -8,6 +8,7 @@
             v-model="search"
             type="text"
             v-on:keyup="filterByName($event)"
+            @focus="search = ''"
             placeholder="Search for a country..."
           />
         </div>
@@ -90,6 +91,9 @@ export default {
         this.selectedReg = e.target.value;
       }
     },
+    focusInput() {
+      this.search = "";
+    },
     filterByName(e) {
       const val = e.target.value;
       const filteredName = this.countries.filter(c => {
@@ -103,13 +107,16 @@ export default {
 </script>
 
 <style lang="scss">
-main .container {
-  flex-direction: column;
+main {
+  .container {
+    flex-direction: column;
+  }
 }
 .intro {
   display: flex;
   flex-direction: column;
   padding: 1rem 0 2rem;
+
   form {
     input {
       width: 100%;
@@ -119,6 +126,7 @@ main .container {
   .input-group {
     position: relative;
     margin-bottom: 2rem;
+
     div {
       position: absolute;
       left: 1rem;
@@ -168,6 +176,7 @@ main .container {
     transform: rotate(1turn);
   }
 }
+
 /* countries-list */
 .countries-list {
   display: grid;
@@ -201,7 +210,5 @@ main .container {
     grid-template-columns: repeat(4, minmax(14rem, 1fr));
     grid-gap: 1rem;
   }
-}
-@media screen and (max-width: 799px) {
 }
 </style>

@@ -16,12 +16,13 @@
     </div>
   </footer>
 </template>
+
 <style lang="scss">
 footer {
   margin-top: auto;
   background: var(--lightMode-bg-clr);
   color: var(--lightMode-text-clr);
-  padding: 1rem;
+  padding: 1.5rem 0;
   font-size: 0.75rem;
   display: flex;
   justify-content: center;
@@ -42,7 +43,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  p + p {
+  p {
     margin-bottom: 0.5rem;
   }
 }
