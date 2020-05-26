@@ -134,15 +134,23 @@ main {
       transform: translateY(-50%);
       transition: all 0.15s ease;
       svg {
-        fill: var(--primary-clr);
+        fill: var(--secondary-clr);
       }
     }
   }
   input,
   select {
+    background: var(--primary-clr);
+    color: var(--secondary-clr);
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 1px 1px 10px hsla(200, 15%, 8%, 0.1);
+  }
+  ::placeholder {
+    color: var(--secondary-clr);
+  }
+  option {
+    background-color: var(--primary-clr);
   }
   select {
     width: 50%;
@@ -153,8 +161,14 @@ main {
 .dark-mode {
   input,
   select {
-    background: var(--darkMode-elements-clr);
-    color: var(--darkMode-text-clr);
+    background: var(--text-clr);
+  }
+  .input-group {
+    div {
+      svg {
+        fill: var(--secondary-clr);
+      }
+    }
   }
 }
 

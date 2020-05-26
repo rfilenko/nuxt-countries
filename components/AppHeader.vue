@@ -2,7 +2,14 @@
   <header>
     <div class="container">
       <h1 class="title">Where is the world?</h1>
-      <button @click="switchMode">{{ light ? `dark mode` : `light mode` }}</button>
+
+      <!-- toggle mode -->
+      <button v-if="light" @click="switchMode" aria-label="toggle light/dark mode">
+        <IosMoonIcon />Dark Mode
+      </button>
+      <button v-else @click="switchMode" aria-label="toggle light/dark mode">
+        <IosSunnyIcon />Light Mode
+      </button>
     </div>
   </header>
 </template>
@@ -53,7 +60,7 @@ header {
     display: flex;
     align-items: center;
     div {
-      margin-left: 0.5rem;
+      margin-right: 0.25rem;
     }
   }
 }

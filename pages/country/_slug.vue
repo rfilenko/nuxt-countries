@@ -1,8 +1,6 @@
 <template>
   <div class="wrap container">
-    <nuxt-link to="/" class="btn-back">
-      <IosArrowRoundBackIcon w="3em" h="3em" />back
-    </nuxt-link>
+    <backBtn />
     <div class="card">
       <div class="card__logo">
         <figure>
@@ -19,7 +17,7 @@
           </p>
           <p>
             Population:
-            <span>{{current.population.toLocaleString()}}</span>
+            <span>{{current.population ? current.population.toLocaleString() : current.population}}</span>
           </p>
           <p>
             Region:
@@ -69,11 +67,11 @@
 
 <script>
 import axios from "@nuxtjs/axios";
-import IosArrowRoundBackIcon from "vue-ionicons/dist/ios-arrow-round-back.vue";
+import backBtn from "@/components/backBtn.vue";
 
 export default {
   components: {
-    IosArrowRoundBackIcon
+    backBtn
   },
   head: {
     title: `Country details`,
@@ -117,24 +115,6 @@ export default {
 </script>
 
 <style lang="scss">
-.btn-back {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  box-shadow: 3px 3px 12px 5px hsla(0, 0%, 52%, 0.15);
-  margin: 2rem 0 2.5rem;
-  padding: 0.5rem 1.25rem;
-  &hover {
-    box-shadow: 3px 3px 15px 8px hsla(0, 0%, 52%, 0.21);
-  }
-  div {
-    margin-right: 0.5rem;
-    transition: all 0.15s ease;
-  }
-  &:hover div {
-    transform: translateX(-4px);
-  }
-}
 .card {
   h2 {
     font-size: 1.5rem;
@@ -142,7 +122,7 @@ export default {
     margin-bottom: 1.5rem;
   }
   img {
-    height: 250px;
+    min-height: 250px;
     margin-bottom: 1rem;
     width: 100%;
   }
@@ -158,7 +138,6 @@ export default {
     margin-bottom: 0.75rem;
   }
   span {
-    color: var(--primary-clr);
     font-weight: 300;
   }
 }
@@ -170,7 +149,6 @@ export default {
     margin-bottom: 0.75rem;
   }
   span {
-    color: var(--primary-clr);
     font-weight: 300;
     margin: 0 0.25rem;
   }
@@ -194,21 +172,16 @@ ul,
     margin-bottom: 1rem;
   }
   li {
-    border: 1px solid var(--primary-clr);
+    box-shadow: 0px 0px 2px 2px hsla(0, 0%, 52%, 0.21);
     padding: 0.25rem 0.75rem;
-    margin: 0.25rem;
+    margin: 0.5em;
+    border-radius: 2px;
   }
 }
 
 .dark-mode {
-  .card__info,
-  .card__additional {
-    span {
-      color: var(--darkMode-text-clr);
-    }
-  }
   svg.ion__svg {
-    fill: var(--darkMode-text-clr);
+    fill: var(--secondary-clr);
   }
 }
 @media screen and(min-width: 800px) {

@@ -17,8 +17,10 @@
   --lightMode-text-clr: hsl(200, 15%, 8%);
   --very-lightGrey-clr: hsl(0, 0%, 5%);
 
-  --primary-clr: var(--lightMode-input-clr);
-  --secondary-clr: var(--darkMode-elements-clr);
+  --primary-clr: var(--lightMode-bg-clr);
+  --secondary-clr: var(--lightMode-text-clr);
+  --text-clr: var(--lightMode-input-clr);
+  --lightgray-clr: var(--lightMode-input-clr);
 }
 html {
   font-family: 'Nunito Sans', sans-serif;
@@ -39,20 +41,20 @@ html {
 }
 
 body {
-  background: var(--lightMode-bg-clr);
   font-size: 14px;
-  color: var(--lightMode-text-clr);
   transition: background .2s ease-out, color .2s ease-out;
 }
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--primary-clr);
+  color: var(--secondary-clr);
 }
 .dark-mode {
-  background: var(--darkMode-bg-clr);
-  font-size: 14px;
-  color: var(--darkMode-text-clr);
+  --primary-clr: var(--darkMode-bg-clr);
+  --secondary-clr: var(--darkMode-text-clr);
+  --text-clr: var(--darkMode-elements-clr);
 }
 
 .container {
@@ -65,11 +67,4 @@ figcaption {
 a:focus, button:focus, input:focus, select:focus {
     outline: 2px dashed currentColor;
     outline-offset: 4px;
-}
-
-@media screen and (max-width: 1024px) {
-
-}
-@media screen and (max-width: 600px) {
-
 }
